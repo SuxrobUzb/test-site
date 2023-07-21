@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jadval</title>
+        <style>
+            body{
+                font-family: sans-serif;
+            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+            table{
+                margin-left: auto;
+                margin-right: auto;
+            }
+            tr:nth-child(even){
+                background-color: #dddddd;
+            }
+            th:nth-child(even){
+                background-color: #5a5a5a;
+                color: white;
+            }
+            th, td{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body> 
+        <div style="width: 100%; text-align: center; margin-top: 50px; margin-bottom: 30px;">
+            <h2>Tables</h2>
+        </div>
+        <table id="jadval">
+            <thead>
+                <tr>
+                    <th><b>Dushanba</b></th>
+                    <th>Seshanba</th>
+                    <th>Chorshanba</th>
+                    <th>Payshanba</th>
+                    <th>Juma     </th>
+                    <th>Shanba</th>
+                    <th>Yakshanba</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>1</b></td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            var table=document.getElementById('jadval');
+            var cells=table.getElementsByTagName('td');
+            for ( var i=0; i<cells.length; i++ ){
+                cells[i].onclick=function(){
+                    if(this.hasAttribute('data-clicked')){
+                        return;
+                    }
+
+                    this.setAttribute('data-clicked', 'yes');
+                    this.setAttribute('data-text', this.innerHTML);
+                
+                    var input=document.createElement('input');
+                    input.setAttribute('type', 'text');
+                    input.value=this.innerHTML;
+                    input.style.width = this.offsetWidth - (this.cleintLeft * 2 ) + "px" ;
+                    input.style.height = this.offsetHeight - (this.cleintTop * 2 ) + "px" ;
+                    input.style.border = "0px";
+                    input.style.fontFamily = "inherit";
+                    input.style.fontSize = "inherit";
+                    input.style.textAlign = "inherit"
+                    input.style.backgroundColor = "LightGoldenRodYellow";
+                    
+                    input.onblur = function(){
+                        var td = input.parentElement; 
+                        var orig_text = input.parentElement.getAttribute('data-text');
+                        var current_text = this.value;
+
+                        if(orig_text !=current_text) {
+                            td.removeAttribute('data-clicked');
+                            td.removeAttribute('data-text');
+                            td.innerHTML = current_text;
+                            td.style.cssText = 'padding: 5px';
+                            console.log(orig_text + ' is Changed to ' + current_text);
+                        }else{
+                            td.removeAttribute('data-clicked');
+                            td.removeAttribute('data-text');
+                            td.innerHTML = orig_text;
+                            td.style.cssText = 'padding: 5px';
+                            console.log('No Changes Made');
+                        }
+                    }
+
+                    input.onkeypress = function () {
+                        if ( event.keyCode == 13){
+                            this.blur();
+                        }
+                    }
+                    this.innerHTML = '';
+                    this.style.cssText = 'padding: 0px 0px';
+                    this.append(input);
+                    this.firstElementChild.select();
+
+                }
+            }
+            console.log(cells);
+        </script>
+    </body>
+</html>
