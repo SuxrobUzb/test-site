@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Random Son va Almashtirish</title>
-    <script>
-        var intervalId;
+    <head>
+        <title>Random Son va Almashtirish</title>
+        <script>
+            var intervalId;
 
-        function startGeneratingNumbers() {
-            // Har 5 sekunddan so'ng sonni almashtirish
-            intervalId = setInterval(generateRandomNumber, 10000);
-        }
+            function startGeneratingNumbers() {
+                // Har 5 sekunddan so'ng sonni almashtirish
+                intervalId = setInterval(generateRandomNumber, 10000);
+            }
 
-        function stopGeneratingNumbers() {
-            // Sonni almashtirishni to'xtatish
-            clearInterval(intervalId);
-        }
+            function stopGeneratingNumbers() {
+                // Sonni almashtirishni to'xtatish
+                clearInterval(intervalId);
+            }
 
-        function generateRandomNumber() {
-            // Songa minimum va maksimum qiymatlarni olib kelish
-            var min = parseInt(document.getElementById("min").value);
-            var max = parseInt(document.getElementById("max").value);
-            // Tasodifiy sonni generatsiya qilish
-            var tasodifiy = Math.floor(Math.random() * (max - min + 1) + min);
-            // Tasodifiy sonni HTML elementiga joylash
-            document.getElementById("result").innerHTML = tasodifiy;
-        }
-    </script>
-</head>
-<body>
-    // HTML elementlari
-    <h1>Tasodifiy Sonlar</h1>
-    <label for="min">Minimum qiymat:</label>
-    // Sonni minimum qiymatini kiritish uchun input
-    <input type="number" id="min" name="min" value="-10"><br><br>
-	<label for="max">Maksimum qiymat:</label>
-	// Sonni maksimum qiymatini kiritish uchun input
-    <input type="number" id="max" name="max" value="10"><br><br>
-    // Start va Stop tugmalarini qo'shish
-    <button onclick="startGeneratingNumbers()">Start</button>
-    <button onclick="stopGeneratingNumbers()">Stop</button>
-    // Tasodifiy sonni ko'rsatish uchun paragraf
-    <p id="result"></p>
-</body>
+            function generateRandomNumber() {
+                // Songa minimum va maksimum qiymatlarni olib kelish
+                var min = parseInt(document.getElementById("min").value);
+                var max = parseInt(document.getElementById("max").value);
+                // Tasodifiy sonni generatsiya qilish
+                var tasodifiy = Math.floor(Math.random() * (max - min + 1) + min);
+                // Tasodifiy sonni HTML elementiga joylash
+                document.getElementById("result").innerHTML = tasodifiy;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Tasodifiy Sonlar</h1>
+        <label for="min">Minimum qiymat:</label>
+        <input type="number" id="min" name="min" value="-10"><br><br>
+        <label for="max">Maksimum qiymat:</label>
+        <input type="number" id="max" name="max" value="10"><br><br>
+        <button onclick="startGeneratingNumbers()">Start</button>
+        <button onclick="stopGeneratingNumbers()">Stop</button>
+        <p id="result"></p>
+    </body>
 </html>
